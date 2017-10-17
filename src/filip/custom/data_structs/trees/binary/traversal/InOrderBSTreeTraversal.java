@@ -14,11 +14,20 @@ import filip.custom.data_structs.trees.traversal.visitors.SearchTreeNodeVisitor;
  * @param <K> Type of keys stored in {@link BSTNode} objects.
  * @param <V> Type of values stored in {@link BSTNode} objects.
  */
-public class InOrderBSTreeTraversal<K extends Comparable<? super K>, V> implements BSTreeTraversal<K, V> {
+public class InOrderBSTreeTraversal<K extends Comparable<? super K>, V> extends BSTreeTraversal<K, V> {
 
-	
+	/**
+	 * Creates a new instance of {@link InOrderBSTreeTraversal}.
+	 * 
+	 * @param tree Tree being traversed.
+	 * @param visitor Visitor active on this traversal.
+	 */
+	public InOrderBSTreeTraversal(BinarySearchTree<K, V> tree, SearchTreeNodeVisitor<K, V> visitor) {
+		super(tree, visitor);
+	}
+
 	@Override
-	public void traverse(BinarySearchTree<K, V> tree, SearchTreeNodeVisitor<K, V> visitor) {
+	public void traverse() {
 		inOrder((BSTNode<K, V>) tree.getRoot(), visitor);
 	}
 	

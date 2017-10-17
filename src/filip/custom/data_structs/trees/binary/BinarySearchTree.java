@@ -2,7 +2,6 @@ package filip.custom.data_structs.trees.binary;
 
 
 import filip.custom.data_structs.trees.SearchTree;
-import filip.custom.data_structs.trees.binary.traversal.BSTreeTraversal;
 import filip.custom.data_structs.trees.binary.traversal.InOrderBSTreeTraversal;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 import filip.custom.data_structs.trees.traversal.visitors.CollectTreeVisitor;
@@ -50,7 +49,6 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		}
 	}
 	
-	
 	@Override
 	public boolean contains(K key) throws IllegalArgumentException {
 		nullCheck(key);
@@ -83,12 +81,10 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		return false;
 	}
 	
-	
 	@Override
 	public boolean isEmpty() {
 		return root == null;
-	}
-	
+	}	
 
 	@Override
 	public boolean insert(K key, V value) throws IllegalArgumentException {
@@ -130,7 +126,6 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		}
 	}
 
-
 	@Override
 	public V remove(K key) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
@@ -150,34 +145,24 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 	}
 
 	@Override
-	public SearchTree<K, V> getGreaterThan(K low) throws IllegalArgumentException {		
+	public SearchTree<K, V> getGreaterThan(K low) {		
 		return getInterval(low, null);
 	}
 
 	@Override
 	public SearchTree<K, V> getInterval(K low, K high) {
-		
-		BSTreeTraversal<K, V> t = new InOrderBSTreeTraversal<>();
-		FilterTreeVisitor<K, V> v = new FilterTreeVisitor<>(low, high, this.getClass());
-		
-		//TODO: pass everything to ctor
-		t.traverse(this, v);
-		
+		FilterTreeVisitor<K, V> v = new FilterTreeVisitor<>(low, high, this.getClass());	
+		new InOrderBSTreeTraversal<>(this, v).traverse();			
 		return v.getFiltered();
 	}
 
-	
 	@Override
 	public String toString() {
-		BSTreeTraversal<K, V> traversal = new InOrderBSTreeTraversal<>();
-		CollectTreeVisitor<K, V> visitor = new CollectTreeVisitor<>();
-		
-		traversal.traverse(this, visitor);
-				
-		return String.join(System.lineSeparator(), visitor.getNodes());	
+		CollectTreeVisitor<K, V> v = new CollectTreeVisitor<>();
+		new InOrderBSTreeTraversal<>(this, v).traverse();
+		return String.join(System.lineSeparator(), v.getNodes());	
 	}
 	
-
 	@Override
 	public SearchTreeNode<K, V> getRoot() {
 		return root;

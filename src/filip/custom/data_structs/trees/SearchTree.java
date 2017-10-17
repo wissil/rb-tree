@@ -72,9 +72,8 @@ public interface SearchTree<K extends Comparable<? super K>, V> {
 	 * containing all the elements with a key greater than this key.
 	 * @return new instance of {@link SearchTree} containing only the elements with key greater than <code>toCompare</code>.
 	 * If no such elements are found in the tree, an empty {@link SearchTree} is returned.
-	 * @throws IllegalArgumentException If the <code>key</code> is <code>null</code>.
 	 */
-	SearchTree<K, V> getGreaterThan(K toCompare) throws IllegalArgumentException;
+	SearchTree<K, V> getGreaterThan(K toCompare);
 	
 	/**
 	 * Gets all the elements with a key less than the given key <code>toCompare</code>.
@@ -82,9 +81,8 @@ public interface SearchTree<K extends Comparable<? super K>, V> {
 	 * @param toCompare The key being compared to. This method returns all the elements with a key less than this key.
 	 * @return new instance of {@link SearchTree} containing only the elements with key less than <code>toCompare</code>.
 	 * If no such elements are found in the tree, an empty {@link SearchTree} is returned.
-	 * @throws IllegalArgumentException If the <code>key</code> is <code>null</code>.
 	 */
-	SearchTree<K, V> getLessThan(K toCompare) throws IllegalArgumentException;
+	SearchTree<K, V> getLessThan(K toCompare);
 	
 	/**
 	 * Gets all the elements with the key greater than or equal to the <code>start</code> key, and 
@@ -94,9 +92,8 @@ public interface SearchTree<K extends Comparable<? super K>, V> {
 	 * @param toKey End of the interval.
 	 * @return {@link SearchTree} of elements with the key greater than or equal to <code>fromKey</code> and
 	 * less than or equal to <code>toKey</code>. If no such elements exist, empty {@link SearchTree} is returned.
-	 * @throws IllegalArgumentException If the <code>key</code> is <code>null</code>.
 	 */
-	SearchTree<K, V> getInterval(K fromKey, K toKey) throws IllegalArgumentException;
+	SearchTree<K, V> getInterval(K fromKey, K toKey);
 	
 	/**
 	 * Gets the root node of this tree.

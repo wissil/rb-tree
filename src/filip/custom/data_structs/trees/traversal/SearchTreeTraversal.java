@@ -1,7 +1,6 @@
 package filip.custom.data_structs.trees.traversal;
 
 import filip.custom.data_structs.trees.SearchTree;
-import filip.custom.data_structs.trees.traversal.visitors.SearchTreeNodeVisitor;
 
 /**
  * An interface that represents a traversal of any {@link SearchTree}.<br>
@@ -13,16 +12,11 @@ import filip.custom.data_structs.trees.traversal.visitors.SearchTreeNodeVisitor;
  *
  * @param <K> Type of keys stored in a {@link SearchTree}.
  * @param <V> Type of values stored in a {@link SearchTree}.
- * @param <T> Type of tree being traversed.
  */
-public interface SearchTreeTraversal<K extends Comparable<? super K>, V, T extends SearchTree<K, V>> {
+public interface SearchTreeTraversal<K extends Comparable<? super K>, V> {
 
 	/**
 	 * Defines a traversal of a specific {@link SearchTree}.
-	 * 
-	 * @param tree Tree being traversed.
-	 * @param visitor A visitor that implements action that should be taken on any
-	 * node visited while traversing a given <code>tree</code>.
 	 */
-	void traverse(T tree, SearchTreeNodeVisitor<K, V> visitor);
+	void traverse();
 }

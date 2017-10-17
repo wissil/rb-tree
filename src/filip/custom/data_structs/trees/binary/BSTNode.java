@@ -61,5 +61,4 @@ public class BSTNode<K extends Comparable<? super K>, V> extends SearchTreeNode<
 	public void setRight(BSTNode<K, V> right) {
 		this.right = right;
 	}
-	
 }
