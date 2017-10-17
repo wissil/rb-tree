@@ -99,16 +99,6 @@ public interface SearchTree<K extends Comparable<? super K>, V> {
 	SearchTree<K, V> getInterval(K fromKey, K toKey) throws IllegalArgumentException;
 	
 	/**
-	 * Builds a textual representation of this {@link SearchTree} in a form of {@link String}
-	 * traversing the tree in-order.<br>
-	 * 
-	 * This traversal returns elements of this tree in the ascending order.
-	 * 
-	 * @return {@link String} representing this {@link SearchTree}.
-	 */
-	String inOrderTraversal();
-	
-	/**
 	 * Gets the root node of this tree.
 	 * 
 	 * @return Root of this tree.

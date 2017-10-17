@@ -1,10 +1,12 @@
 package filip.custom.data_structs.trees.binary;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import filip.custom.data_structs.trees.SearchTree;
+import filip.custom.data_structs.trees.binary.traversal.BSTreeTraversal;
+import filip.custom.data_structs.trees.binary.traversal.InOrderBSTreeTraversal;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
+import filip.custom.data_structs.trees.traversal.visitors.CollectTreeVisitor;
+import filip.custom.data_structs.trees.traversal.visitors.FilterTreeVisitor;
 
 /**
  * This class represents any <b>Binary Search Tree</b>.<br>
@@ -87,42 +89,6 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		return root == null;
 	}
 	
-	
-	@Override
-	public SearchTree<K, V> getGreaterThan(K toCompare) throws IllegalArgumentException {
-		nullCheck(toCompare);
-		
-		return isEmpty() ? 
-				new BinarySearchTree<>() : 
-				traverseAndAdd(toCompare, new BinarySearchTree<>(), true);
-	}
-
-	private BinarySearchTree<K, V> traverseAndAdd(K toCompare, BinarySearchTree<K, V> subTree, boolean greater) {
-		traverseAndAdd(root, toCompare, subTree, greater);
-		
-		return subTree;
-	}
-	
-	private void traverseAndAdd(BSTNode<K, V> cRoot, K toCompare, BinarySearchTree<K, V> subTree, boolean greater) {
-		// do work
-		if (cRoot == null) return;
-		
-		int compared = cRoot.getKey().compareTo(toCompare);
-		
-		if ((greater && compared > 0) || (!greater && compared < 0)) {
-			subTree.insert(cRoot.getKey(), cRoot.getValue());
-		}
-		
-		if (cRoot.left != null) {
-			// go left
-			traverseAndAdd(cRoot.left, toCompare, subTree, greater);
-		}
-		
-		if (cRoot.right != null) {
-			// go right
-			traverseAndAdd(cRoot.right, toCompare, subTree, greater);
-		}
-	}
 
 	@Override
 	public boolean insert(K key, V value) throws IllegalArgumentException {
@@ -179,92 +145,38 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 
 
 	@Override
-	public SearchTree<K, V> getLessThan(K toCompare) throws IllegalArgumentException {
-		nullCheck(toCompare);
-		
-		return isEmpty() ? 
-				new BinarySearchTree<>() : 
-				traverseAndAdd(toCompare, new BinarySearchTree<>(), false);
+	public SearchTree<K, V> getLessThan(K high) {		
+		return getInterval(null, high);
 	}
-
 
 	@Override
-	public SearchTree<K, V> getInterval(K fromKey, K toKey) throws IllegalArgumentException {
-		nullCheck(fromKey);
-		nullCheck(toKey);
-		
-		return isEmpty() ?
-				new BinarySearchTree<>() :
-				traverseAndAdd(fromKey, toKey, new BinarySearchTree<>());
+	public SearchTree<K, V> getGreaterThan(K low) throws IllegalArgumentException {		
+		return getInterval(low, null);
 	}
-	
-	private BinarySearchTree<K, V> traverseAndAdd(K fromKey, K toKey, BinarySearchTree<K, V> subTree) {
-		traverseAndAdd(root, fromKey, toKey, subTree);
-		
-		return subTree;
-	}
-	
-	private void traverseAndAdd(BSTNode<K, V> cRoot, K fromKey, K toKey, BinarySearchTree<K, V> subTree) {
-		// do work
-		if (cRoot == null) return;
-
-		int comparedFrom = cRoot.getKey().compareTo(fromKey);
-		int comparedTo = cRoot.getKey().compareTo(toKey);
-		
-		if (comparedFrom > 0 && comparedTo < 0) {
-			subTree.insert(cRoot.getKey(), cRoot.getValue());
-		}
-
-		if (cRoot.left != null) {
-			// go left
-			traverseAndAdd(cRoot.left, fromKey, toKey, subTree);
-		}
-
-		if (cRoot.right != null) {
-			// go right
-			traverseAndAdd(cRoot.right, fromKey, toKey, subTree);
-		}
-	}
-
 
 	@Override
-	public String inOrderTraversal() {	
-		List<BSTNode<K, V>> nodes = new ArrayList<>();
+	public SearchTree<K, V> getInterval(K low, K high) {
 		
-		if (!isEmpty()) {
-			addNodesToList(nodes, root);
-		}
-			
-		return String.join(System.lineSeparator(), nodes);		
+		BSTreeTraversal<K, V> t = new InOrderBSTreeTraversal<>();
+		FilterTreeVisitor<K, V> v = new FilterTreeVisitor<>(low, high, this.getClass());
+		
+		//TODO: pass everything to ctor
+		t.traverse(this, v);
+		
+		return v.getFiltered();
 	}
+
 	
 	@Override
 	public String toString() {
-		return inOrderTraversal();
+		BSTreeTraversal<K, V> traversal = new InOrderBSTreeTraversal<>();
+		CollectTreeVisitor<K, V> visitor = new CollectTreeVisitor<>();
+		
+		traversal.traverse(this, visitor);
+				
+		return String.join(System.lineSeparator(), visitor.getNodes());	
 	}
 	
-
-	/**
-	 * Adds all the nodes from this {@link BinarySearchTree} to the <code>nodes</code> list.
-	 * 
-	 * @param nodes List of nodes being populated by the call of this method.
-	 * @param cRoot Current root of the subtree.
-	 */
-	private void addNodesToList(List<BSTNode<K, V>> nodes, BSTNode<K, V> cRoot) {
-		// go to the left sub-tree
-		if (cRoot.left != null) {
-			addNodesToList(nodes, cRoot.left);
-		}
-				
-		// process
-		nodes.add(cRoot);
-		
-		// go to the right sub-tree
-		if (cRoot.right != null) {
-			addNodesToList(nodes, cRoot.right);
-		}
-	}
-
 
 	@Override
 	public SearchTreeNode<K, V> getRoot() {
