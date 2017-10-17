@@ -1,5 +1,7 @@
 package filip.custom.data_structs.trees;
 
+import filip.custom.data_structs.trees.binary.BinarySearchTree;
+
 public class Program {
 
 	public static void main(String[] args) {

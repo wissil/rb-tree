@@ -1,8 +1,9 @@
-package filip.custom.data_structs.trees;
+package filip.custom.data_structs.trees.binary;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import filip.custom.data_structs.trees.SearchTree;
 
 /**
  * This class represents any <b>Binary Search Tree</b>.<br>
@@ -22,110 +23,9 @@ import java.util.Objects;
 public class BinarySearchTree<K extends Comparable<? super K>, V> implements SearchTree<K, V>  {
 
 	/**
-	 * A class that represents a node of a <b>Binary Search Tree</b>.<br>
-	 * 
-	 * {@link CharSequence} interface is implemented to allow better manipulation of
-	 * textual representations of the objects of this class.
-	 * 
-	 * @author fiilip
-	 *
-	 * @param <K> Key
-	 * @param <V> Value
-	 */
-	private static class Node<K extends Comparable<? super K>, V> implements Comparable<Node<K, V>>, CharSequence {
-		
-		/**
-		 * Key object.
-		 */
-		private final K key;
-		
-		/**
-		 * Value object.
-		 */
-		private final V value;
-		
-		/**
-		 * Node that is left to this node.<br>
-		 * This node is by the definition greater than this node.
-		 */
-		private Node<K, V> left = null;
-		
-		/**
-		 * Node that is right to this node.<br>
-		 * This node is by the definition less than this node.
-		 */
-		private Node<K, V> right = null;
-		
-		/**
-		 * Textual representation of this node.
-		 */
-		private final String textual;
-		
-		/**
-		 * Creates a new instance of a {@link Node}.
-		 * 
-		 * @param key Key of this node.
-		 * @param value Value of this node.
-		 */
-		protected Node(K key, V value) {
-			this.key = Objects.requireNonNull(key);
-			this.value = value;
-			this.textual = String.format("(%s, %s)", key.toString(), value.toString());
-		}
-
-		@Override
-		public int compareTo(Node<K, V> node) {
-			int compared = key.compareTo(node.key);
-			
-			if (compared < 0) return -1;
-			if (compared > 0) return 1;
-			
-			return 0;
-		}
-		
-		/**
-		 * Gets the key stored in this node.
-		 * 
-		 * @return Key of this node.
-		 */
-		protected K getKey() {
-			return key;
-		}
-		
-		/**
-		 * Gets the value stored in this node.
-		 * 
-		 * @return Value of this node.
-		 */
-		protected V getValue() {
-			return value;
-		}
-		
-		@Override
-		public String toString() {
-			return textual;
-		}
-
-		@Override
-		public int length() {
-			return textual.length();
-		}
-
-		@Override
-		public char charAt(int index) {
-			return textual.charAt(index);
-		}
-
-		@Override
-		public CharSequence subSequence(int start, int end) {
-			return textual.subSequence(start, end);
-		}
-	}
-
-	/**
 	 * A root node of this <b>Binary Search Tree</b>.
 	 */
-	private Node<K, V> root = null;
+	private BSTNode<K, V> root = null;
 	
 	/**
 	 * Default constructor.
@@ -158,7 +58,7 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		}
 		
 		// at this point, root exists
-		Node<K, V> tmp = root;
+		BSTNode<K, V> tmp = root;
 		
 		while (tmp != null) {
 			// make a comparison
@@ -202,7 +102,7 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		return subTree;
 	}
 	
-	private void traverseAndAdd(Node<K, V> cRoot, K toCompare, BinarySearchTree<K, V> subTree, boolean greater) {
+	private void traverseAndAdd(BSTNode<K, V> cRoot, K toCompare, BinarySearchTree<K, V> subTree, boolean greater) {
 		// do work
 		if (cRoot == null) return;
 		
@@ -228,14 +128,14 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		nullCheck(key);
 		
 		// 1) create a node to insert
-		Node<K, V> toInsert = new Node<>(key, value);
+		BSTNode<K, V> toInsert = new BSTNode<>(key, value);
 		
 		// 2) find a place to insert it
 		if (root == null) {
 			root = toInsert;
 		}
 		
-		Node<K, V> tmp = root;
+		BSTNode<K, V> tmp = root;
 		
 		while (true) {
 			int compared = key.compareTo(tmp.getKey());
@@ -303,7 +203,7 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		return subTree;
 	}
 	
-	private void traverseAndAdd(Node<K, V> cRoot, K fromKey, K toKey, BinarySearchTree<K, V> subTree) {
+	private void traverseAndAdd(BSTNode<K, V> cRoot, K fromKey, K toKey, BinarySearchTree<K, V> subTree) {
 		// do work
 		if (cRoot == null) return;
 
@@ -328,14 +228,13 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 
 	@Override
 	public String inOrderTraversal() {	
-		List<Node<K, V>> nodes = new ArrayList<>();
+		List<BSTNode<K, V>> nodes = new ArrayList<>();
 		
 		if (!isEmpty()) {
 			addNodesToList(nodes, root);
 		}
 			
-		return String.join(System.lineSeparator(), nodes);
-		
+		return String.join(System.lineSeparator(), nodes);		
 	}
 	
 	@Override
@@ -350,7 +249,7 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 	 * @param nodes List of nodes being populated by the call of this method.
 	 * @param cRoot Current root of the subtree.
 	 */
-	private void addNodesToList(List<Node<K, V>> nodes, Node<K, V> cRoot) {
+	private void addNodesToList(List<BSTNode<K, V>> nodes, BSTNode<K, V> cRoot) {
 		// go to the left sub-tree
 		if (cRoot.left != null) {
 			addNodesToList(nodes, cRoot.left);
