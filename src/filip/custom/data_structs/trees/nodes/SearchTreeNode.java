@@ -18,7 +18,7 @@ import filip.custom.data_structs.trees.SearchTree;
  * <code>null</code> values are allowed.
  */
 public abstract class SearchTreeNode<K extends Comparable<? super K>, V> 
-					implements Comparable<SearchTreeNode<K, V>>, CharSequence{
+				implements Comparable<SearchTreeNode<K, V>>, CharSequence{
 	
 	/**
 	 * Key stored in this node.
