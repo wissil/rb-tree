@@ -1,6 +1,6 @@
 package filip.custom.data_structs.trees.binary.traversal;
 
-import filip.custom.data_structs.trees.binary.BSTNode;
+
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
 import filip.custom.data_structs.trees.traversal.SearchTreeTraversal;
 
@@ -13,6 +13,7 @@ import filip.custom.data_structs.trees.traversal.SearchTreeTraversal;
  * @param <V> Type of values stored in a {@link BinarySearchTreeNode}.
  */
 public interface BSTreeTraversal<K extends Comparable<? super K>, V> 
-					extends SearchTreeTraversal<K, V, BSTNode<K, V>> {
+					extends SearchTreeTraversal<K, V, BinarySearchTree<K, V>> {
 
+	
 }

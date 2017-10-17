@@ -19,5 +19,5 @@ public interface SearchTreeNodeVisitor<K extends Comparable<? super K>, V> {
 	 * 
 	 * @param node Node being visited.
 	 */
-	void onNodeVisited(SearchTreeNode<K, V> node);
+	void processNode(SearchTreeNode<K, V> node);
 }

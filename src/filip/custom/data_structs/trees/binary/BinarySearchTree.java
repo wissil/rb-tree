@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import filip.custom.data_structs.trees.SearchTree;
+import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 
 /**
  * This class represents any <b>Binary Search Tree</b>.<br>
@@ -262,5 +263,11 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> implements Sea
 		if (cRoot.right != null) {
 			addNodesToList(nodes, cRoot.right);
 		}
+	}
+
+
+	@Override
+	public SearchTreeNode<K, V> getRoot() {
+		return root;
 	}
 }

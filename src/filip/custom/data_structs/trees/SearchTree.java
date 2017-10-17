@@ -1,5 +1,6 @@
 package filip.custom.data_structs.trees;
 
+import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 
 /**
  * Interface that represents any kind of a <b>Search Tree</b>.<br>
@@ -106,4 +107,11 @@ public interface SearchTree<K extends Comparable<? super K>, V> {
 	 * @return {@link String} representing this {@link SearchTree}.
 	 */
 	String inOrderTraversal();
+	
+	/**
+	 * Gets the root node of this tree.
+	 * 
+	 * @return Root of this tree.
+	 */
+	SearchTreeNode<K, V> getRoot();
 }

@@ -25,4 +25,41 @@ public class BSTNode<K extends Comparable<? super K>, V> extends SearchTreeNode<
 	public BSTNode(K key, V value) {
 		super(key, value);
 	}
+
+	/**
+	 * Gets the root of left subtree of this node.
+	 * 
+	 * @return Left node.
+	 */
+	public BSTNode<K, V> getLeft() {
+		return left;
+	}
+
+	/**
+	 * Sets the root of left subtree of this node.
+	 * 
+	 * @param left Left node.
+	 */
+	public void setLeft(BSTNode<K, V> left) {
+		this.left = left;
+	}
+
+	/**
+	 * Gets the root of the right subtree of this node.
+	 * 
+	 * @return Right node.
+	 */
+	public BSTNode<K, V> getRight() {
+		return right;
+	}
+
+	/**
+	 * Sets the root of the right subtree of this node.
+	 * 
+	 * @param right Right node.
+	 */
+	public void setRight(BSTNode<K, V> right) {
+		this.right = right;
+	}
+	
 }
