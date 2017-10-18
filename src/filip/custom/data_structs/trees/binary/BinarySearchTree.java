@@ -43,20 +43,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		count = 0;
 	}
 		
-	
-	/**
-	 * Checks if the given <code>key</code> is <code>null</code>.<br>
-	 * If the given <code>key</code> is <code>null</code>, then this method throws an
-	 * {@link IllegalArgumentException}, otherwise nothing is returned.
-	 * 
-	 * @param key Object of interest.
-	 */
-	private void nullCheckKey(K key) throws IllegalArgumentException {
-		if (key == null) {
-			throw new IllegalArgumentException("Key should not be null.");
-		}
-	}
-	
+		
 	@Override
 	public boolean contains(K key) throws IllegalArgumentException {
 		return get(key) != null;
@@ -67,7 +54,117 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		return root == null;
 	}	
 
-	public boolean insertInternal(K key, V value) throws IllegalArgumentException {
+	@Override
+	public void clear() {
+		root = null;
+	}
+
+
+	@Override
+	public SearchTree<K, V> getLessThan(K high) {		
+		return getInterval(null, high);
+	}
+
+	@Override
+	public SearchTree<K, V> getGreaterThan(K low) {		
+		return getInterval(low, null);
+	}
+
+	@Override
+	public SearchTree<K, V> getInterval(K low, K high) {
+		FilterTreeVisitor<K, V> v = new FilterTreeVisitor<>(low, high, this.getClass());	
+		new InOrderBSTreeTraversal<>(root, v).traverse();			
+		return v.getFiltered();
+	}
+
+	@Override
+	public String toString() {
+		return new BSTStringBuilder<>(root).build();
+	}
+	
+	/**
+	 * Gets the number of child nodes for a given <code>node</code>.
+	 * 
+	 * @param node Node of interest.
+	 * @return Number of child nodes for a given <code>node</code>.
+	 */
+	private int getNumberOfChildren(BSTNode<K, V> node) {
+		if (node == null) {
+			throw new IllegalArgumentException("Can't get a number of child nodes for null.");
+		}
+		
+		int children = 0;
+		
+		if (node.getLeft() != null) children ++;
+		if (node.getRight() != null) children ++;
+		
+		return children;
+	}
+
+	@Override
+	public Iterator<Entry<K, V>> iterator() {
+		return new BSTIterator<>(root);
+	}
+
+	@Override
+	public int size() {		
+		return count;
+	}
+
+	@Override
+	public boolean insert(K key, V value) throws IllegalArgumentException {
+		boolean inserted = insertInternal(key, value);
+		
+		if (inserted) count ++;
+		
+		return inserted;
+	}
+
+	@Override
+	public V remove(K key) throws IllegalArgumentException {
+		V removed = removeInternal(key);
+		
+		if (removed != null) count --;
+		
+		return removed;
+	}
+
+	@Override
+	public V get(K key) {
+		nullCheckKey(key);
+				
+		BSTNode<K, V> tmp = root;
+		
+		while (tmp != null) {
+			// make a comparison
+			int compared = tmp.getKey().compareTo(key);
+					
+			if (compared < 0) {
+				// result is right
+				tmp = tmp.right;
+			} else if (compared > 0) {
+				// result is left
+				tmp = tmp.left;
+			} else {
+				// search hit
+				return tmp.getValue();
+			}
+		}
+		
+		// not found
+		return null;
+	}
+	
+	/**
+	 * Internal method for inserting a new entry with a given <code>key</code> and <code>value</code>
+	 * in this tree.
+	 * 
+	 * @param key Key of a new entry.
+	 * @param value Value of a new entry.
+	 * @return <code>true</code> if the element was successfully inserted, and <code>false</code> otherwise.
+	 * @throws IllegalArgumentException If a given <code>key</code> is <code>null</code>.
+	 */
+	private boolean insertInternal(K key, V value) throws IllegalArgumentException {
 		nullCheckKey(key);
 		
 		// 1) create a node to insert
@@ -107,7 +204,15 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		}
 	}
 
-	public V removeInternal(K key) throws IllegalArgumentException {
+	/**
+	 * Internal method for removing an element with a given <code>key</code>.
+	 * 
+	 * @param key Key of the element to be removed.
+	 * @return Value of a removed element, or <code>null</code> if the element for a given <code>key</code>
+	 * doesn't exist.
+	 * @throws IllegalArgumentException If a given <code>key</code> is null.
+	 */
+	private V removeInternal(K key) throws IllegalArgumentException {
 		nullCheckKey(key);
 		
 		/* 1) Find the node to be deleted and it's parent */
@@ -229,105 +334,17 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		
 		return value;
 	}
-
-	@Override
-	public void clear() {
-		root = null;
-	}
-
-
-	@Override
-	public SearchTree<K, V> getLessThan(K high) {		
-		return getInterval(null, high);
-	}
-
-	@Override
-	public SearchTree<K, V> getGreaterThan(K low) {		
-		return getInterval(low, null);
-	}
-
-	@Override
-	public SearchTree<K, V> getInterval(K low, K high) {
-		FilterTreeVisitor<K, V> v = new FilterTreeVisitor<>(low, high, this.getClass());	
-		new InOrderBSTreeTraversal<>(root, v).traverse();			
-		return v.getFiltered();
-	}
-
-	@Override
-	public String toString() {
-		return new BSTStringBuilder<>(root).build();
-	}
 	
 	/**
-	 * Gets the number of child nodes for a given <code>node</code>.
+	 * Checks if the given <code>key</code> is <code>null</code>.<br>
+	 * If the given <code>key</code> is <code>null</code>, then this method throws an
+	 * {@link IllegalArgumentException}, otherwise nothing is returned.
 	 * 
-	 * @param node Node of interest.
-	 * @return Number of child nodes for a given <code>node</code>.
+	 * @param key Object of interest.
 	 */
-	private int getNumberOfChildren(BSTNode<K, V> node) {
-		if (node == null) {
-			throw new IllegalArgumentException("Can't get a number of child nodes for null.");
+	private void nullCheckKey(K key) throws IllegalArgumentException {
+		if (key == null) {
+			throw new IllegalArgumentException("Key should not be null.");
 		}
-		
-		int children = 0;
-		
-		if (node.getLeft() != null) children ++;
-		if (node.getRight() != null) children ++;
-		
-		return children;
-	}
-
-	@Override
-	public Iterator<Entry<K, V>> iterator() {
-		return new BSTIterator<>(root);
-	}
-
-	@Override
-	public int size() {		
-		return count;
-	}
-
-	@Override
-	public boolean insert(K key, V value) throws IllegalArgumentException {
-		boolean inserted = insertInternal(key, value);
-		
-		if (inserted) count ++;
-		
-		return inserted;
-	}
-
-	@Override
-	public V remove(K key) throws IllegalArgumentException {
-		V removed = removeInternal(key);
-		
-		if (removed != null) count --;
-		
-		return removed;
-	}
-
-	@Override
-	public V get(K key) {
-		nullCheckKey(key);
-				
-		BSTNode<K, V> tmp = root;
-		
-		while (tmp != null) {
-			// make a comparison
-			int compared = tmp.getKey().compareTo(key);
-					
-			if (compared < 0) {
-				// result is right
-				tmp = tmp.right;
-			} else if (compared > 0) {
-				// result is left
-				tmp = tmp.left;
-			} else {
-				// search hit
-				return tmp.getValue();
-			}
-		}
-		
-		// not found
-		return null;
 	}
 }
