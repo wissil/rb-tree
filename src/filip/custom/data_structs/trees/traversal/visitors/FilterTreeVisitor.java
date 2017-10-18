@@ -15,7 +15,7 @@ import filip.custom.data_structs.trees.nodes.SearchTreeNode;
  * @param <K> Type of keys in a tree.
  * @param <V> Type of values in a tree.
  */
-public class FilterTreeVisitor<K extends Comparable<? super K>, V> implements SearchTreeNodeVisitor<K, V> {
+public class FilterTreeVisitor<K extends Comparable<K>, V> implements SearchTreeNodeVisitor<K, V> {
 
 	/**
 	 * Lower limit for the keys being processed.

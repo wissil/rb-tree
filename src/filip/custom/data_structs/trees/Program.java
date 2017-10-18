@@ -1,12 +1,13 @@
 package filip.custom.data_structs.trees;
 
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
+import filip.custom.data_structs.trees.binary.iterators.BSTIterator;
 
 
 public class Program {
 
 	public static void main(String[] args) {
-		SearchTree<Integer, String> st = new BinarySearchTree<>();
+		BinarySearchTree<Integer, String> st = new BinarySearchTree<>();
 		
 		st.insert(5, "b");
 		st.insert(8, "a");
@@ -19,6 +20,11 @@ public class Program {
 		st.insert(38, "sa");
 		st.insert(84, "k");
 		
-		System.out.println(st.getInterval(7, 39));
+		@SuppressWarnings("unchecked")
+		BSTIterator<Integer, String> it = (BSTIterator<Integer, String>) st.iterator();
+		
+		while (it.hasNext()) {
+			System.out.println(it.next());
+		}
 	}
 }

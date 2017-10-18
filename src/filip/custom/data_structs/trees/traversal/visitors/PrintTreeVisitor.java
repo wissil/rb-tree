@@ -11,7 +11,7 @@ import filip.custom.data_structs.trees.nodes.SearchTreeNode;
  * @param <K> Type of keys stored in a tree.
  * @param <V> Type of values stored in a tree.
  */
-public class PrintTreeVisitor<K extends Comparable<? super K>, V> implements SearchTreeNodeVisitor<K, V> {
+public class PrintTreeVisitor<K extends Comparable<K>, V> implements SearchTreeNodeVisitor<K, V> {
 
 	@Override
 	public void processNode(SearchTreeNode<K, V> node) {

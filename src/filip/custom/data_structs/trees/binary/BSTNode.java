@@ -2,7 +2,7 @@ package filip.custom.data_structs.trees.binary;
 
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 
-public class BSTNode<K extends Comparable<? super K>, V> extends SearchTreeNode<K, V> {
+public class BSTNode<K extends Comparable<K>, V> extends SearchTreeNode<K, V> {
 
 	/**
 	 * Node that is left to this node.<br>

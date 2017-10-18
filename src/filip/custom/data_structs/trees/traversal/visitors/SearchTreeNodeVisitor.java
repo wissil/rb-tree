@@ -12,7 +12,7 @@ import filip.custom.data_structs.trees.nodes.SearchTreeNode;
  * @param <K> Type of keys stored in nodes being visited.
  * @param <V> Type of values stored in nodes being visited.
  */
-public interface SearchTreeNodeVisitor<K extends Comparable<? super K>, V> {
+public interface SearchTreeNodeVisitor<K extends Comparable<K>, V> {
 
 	/**
 	 * The action taken whenever a given <code>node</code> is visited.

@@ -13,7 +13,7 @@ import filip.custom.data_structs.trees.SearchTree;
  * @param <K> Type of keys stored in a {@link SearchTree}.
  * @param <V> Type of values stored in a {@link SearchTree}.
  */
-public interface SearchTreeTraversal<K extends Comparable<? super K>, V> {
+public interface SearchTreeTraversal<K extends Comparable<K>, V> {
 
 	/**
 	 * Defines a traversal of a specific {@link SearchTree}.

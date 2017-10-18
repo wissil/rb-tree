@@ -1,6 +1,5 @@
 package filip.custom.data_structs.trees;
 
-import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 
 /**
  * Interface that represents any kind of a <b>Search Tree</b>.<br>
@@ -20,7 +19,7 @@ import filip.custom.data_structs.trees.nodes.SearchTreeNode;
  *
  * @param <V> Parameter of this interface representing the value objects stored in this tree.
  */
-public interface SearchTree<K extends Comparable<? super K>, V> {
+public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchTree.Entry<K, V>> {
 	
 	/**
 	 * Inserts the given <code>key, value</code> pair to this {@link SearchTree}.
@@ -96,9 +95,36 @@ public interface SearchTree<K extends Comparable<? super K>, V> {
 	SearchTree<K, V> getInterval(K fromKey, K toKey);
 	
 	/**
-	 * Gets the root node of this tree.
+	 * Inner class that represents an entry of this {@link SearchTree}.<br>
+	 * Entry is consisted of a <code>Key, Value</code> pair.
 	 * 
-	 * @return Root of this tree.
+	 * @author fiilip
+	 *
+	 * @param <K> Type of keys stored in an entry.
+	 * @param <V> Type of values stored in an entry.
 	 */
-	SearchTreeNode<K, V> getRoot();
+	static interface Entry<K, V> {
+		
+		/**
+		 * Gets the key stored in this entry.
+		 * 
+		 * @return Key stored in this entry.
+		 */
+		K getKey();
+		
+		/**
+		 * Gets the value stored in this entry.
+		 * 
+		 * @return Value stored in this entry.
+		 */
+		V getValue();
+		
+		/**
+		 * Sets the <code>value</code> of this entry.
+		 * 
+		 * @param value Value being set to this entry.
+		 */
+		void setValue(V value);
+	}
+	
 }

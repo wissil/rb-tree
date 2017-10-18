@@ -3,6 +3,7 @@ package filip.custom.data_structs.trees.binary.traversal;
 
 import java.util.Objects;
 
+import filip.custom.data_structs.trees.binary.BSTNode;
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
 import filip.custom.data_structs.trees.traversal.SearchTreeTraversal;
 import filip.custom.data_structs.trees.traversal.visitors.SearchTreeNodeVisitor;
@@ -15,12 +16,12 @@ import filip.custom.data_structs.trees.traversal.visitors.SearchTreeNodeVisitor;
  * @param <K> Type of keys stored in a {@link BinarySearchTreeNode}.
  * @param <V> Type of values stored in a {@link BinarySearchTreeNode}.
  */
-public abstract class BSTreeTraversal<K extends Comparable<? super K>, V> implements SearchTreeTraversal<K, V> {
+public abstract class BSTreeTraversal<K extends Comparable<K>, V> implements SearchTreeTraversal<K, V> {
 
 	/**
 	 * Tree being traversed.
 	 */
-	final BinarySearchTree<K, V> tree;
+	final BSTNode<K, V> root;
 	
 	/**
 	 * Visitor that is active on this traversal.
@@ -30,23 +31,14 @@ public abstract class BSTreeTraversal<K extends Comparable<? super K>, V> implem
 	/**
 	 * Creates a new instance of {@link BSTreeTraversal}.
 	 * 
-	 * @param tree Tree being traversed.
+	 * @param root Root of the tree being traversed.
 	 * @param visitor Visitor active on this traversal.
 	 */
-	public BSTreeTraversal(BinarySearchTree<K, V> tree, SearchTreeNodeVisitor<K, V> visitor) {
-		this.tree = Objects.requireNonNull(tree);
+	public BSTreeTraversal(BSTNode<K, V> root, SearchTreeNodeVisitor<K, V> visitor) {
+		this.root = Objects.requireNonNull(root);
 		this.visitor = Objects.requireNonNull(visitor);
 	}
-	
-	/**
-	 * Gets the {@link BinarySearchTree} being traversed.
-	 * 
-	 * @return Tree being traversed.
-	 */
-	public BinarySearchTree<K, V> getTree() {
-		return tree;
-	}
-	
+		
 	/**
 	 * Gets the {@link SearchTreeNodeVisitor} being active on this traversal.
 	 * 

@@ -17,8 +17,8 @@ import filip.custom.data_structs.trees.SearchTree;
  * @param <V> Value stored in the node.<br>
  * <code>null</code> values are allowed.
  */
-public abstract class SearchTreeNode<K extends Comparable<? super K>, V> 
-				implements Comparable<SearchTreeNode<K, V>>, CharSequence{
+public abstract class SearchTreeNode<K extends Comparable<K>, V> 
+				implements SearchTree.Entry<K, V>, Comparable<SearchTreeNode<K, V>>, CharSequence {
 	
 	/**
 	 * Key stored in this node.
@@ -28,7 +28,7 @@ public abstract class SearchTreeNode<K extends Comparable<? super K>, V>
 	/**
 	 * Value stored in this node.
 	 */
-	private final V value;
+	private V value;
 	
 	/**
 	 * Textual representation of this node.
@@ -52,6 +52,7 @@ public abstract class SearchTreeNode<K extends Comparable<? super K>, V>
 	 * 
 	 * @return key stored in this node.
 	 */
+	@Override
 	public K getKey() {
 		return key;
 	}
@@ -61,8 +62,19 @@ public abstract class SearchTreeNode<K extends Comparable<? super K>, V>
 	 * 
 	 * @return value stored in this node.
 	 */
+	@Override
 	public V getValue() {
 		return value;
+	}
+	
+	/**
+	 * Sets the <code>value</code> of this node.
+	 * 
+	 * @param value Value of this node.
+	 */
+	@Override
+	public void setValue(V value) {
+		this.value = value;
 	}
 	
 	@Override
@@ -82,16 +94,12 @@ public abstract class SearchTreeNode<K extends Comparable<? super K>, V>
 	
 	@Override
 	public int compareTo(SearchTreeNode<K, V> node) {
-		int compared = key.compareTo(node.key);
-		
-		if (compared < 0) return -1;
-		if (compared > 0) return 1;
-		
-		return 0;
+		return key.compareTo(node.getKey());
 	}
 	
 	@Override
 	public String toString() {
 		return textual;
 	}
+	
 }
