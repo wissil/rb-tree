@@ -19,11 +19,11 @@ public class Program {
 		st.insert(38, "sa");
 		st.insert(84, "k");
 		
-		System.out.println(st.size());
+		System.out.println(st);
 				
-		st.remove(8);
-		
-		System.out.println(st.size());
+//		st.remove(8);
+//		
+//		System.out.println(st.size());
 				
 	}
 }

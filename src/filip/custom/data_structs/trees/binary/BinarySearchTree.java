@@ -6,7 +6,7 @@ import java.util.Iterator;
 import filip.custom.data_structs.trees.SearchTree;
 import filip.custom.data_structs.trees.binary.iterators.BSTIterator;
 import filip.custom.data_structs.trees.binary.traversal.InOrderBSTreeTraversal;
-import filip.custom.data_structs.trees.traversal.visitors.CollectTreeVisitor;
+import filip.custom.data_structs.trees.binary.util.BSTStringBuilder;
 import filip.custom.data_structs.trees.traversal.visitors.FilterTreeVisitor;
 
 /**
@@ -255,9 +255,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 
 	@Override
 	public String toString() {
-		CollectTreeVisitor<K, V> v = new CollectTreeVisitor<>();
-		new InOrderBSTreeTraversal<>(root, v).traverse();
-		return String.join(System.lineSeparator(), v.getNodes());	
+		return new BSTStringBuilder<>(root).build();
 	}
 	
 	/**
