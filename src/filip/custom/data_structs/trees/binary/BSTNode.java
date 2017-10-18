@@ -2,6 +2,14 @@ package filip.custom.data_structs.trees.binary;
 
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 
+/**
+ * A class that represents a node of a <b>Binary Search Tree</b>.
+ * 
+ * @author fiilip
+ *
+ * @param <K> Type of keys stored in nodes.
+ * @param <V> Type of values stored in nodes.
+ */
 public class BSTNode<K extends Comparable<K>, V> extends SearchTreeNode<K, V> {
 
 	/**

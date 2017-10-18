@@ -164,7 +164,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 	 * @return <code>true</code> if the element was successfully inserted, and <code>false</code> otherwise.
 	 * @throws IllegalArgumentException If a given <code>key</code> is <code>null</code>.
 	 */
-	private boolean insertInternal(K key, V value) throws IllegalArgumentException {
+	protected boolean insertInternal(K key, V value) throws IllegalArgumentException {
 		nullCheckKey(key);
 		
 		// 1) create a node to insert
@@ -212,7 +212,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 	 * doesn't exist.
 	 * @throws IllegalArgumentException If a given <code>key</code> is null.
 	 */
-	private V removeInternal(K key) throws IllegalArgumentException {
+	protected V removeInternal(K key) throws IllegalArgumentException {
 		nullCheckKey(key);
 		
 		/* 1) Find the node to be deleted and it's parent */
@@ -337,12 +337,11 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 	
 	/**
 	 * Checks if the given <code>key</code> is <code>null</code>.<br>
-	 * If the given <code>key</code> is <code>null</code>, then this method throws an
-	 * {@link IllegalArgumentException}, otherwise nothing is returned.
 	 * 
-	 * @param key Object of interest.
+	 * @param key Key of interest.
+	 * @throws IllegalArgumentException if a given <code>key</code> is <code>null</code>.
 	 */
-	private void nullCheckKey(K key) throws IllegalArgumentException {
+	protected void nullCheckKey(K key) throws IllegalArgumentException {
 		if (key == null) {
 			throw new IllegalArgumentException("Key should not be null.");
 		}
