@@ -32,9 +32,15 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 	private BSTNode<K, V> root = null;
 	
 	/**
+	 * Number of elements stored in this tree.
+	 */
+	private int count;
+	
+	/**
 	 * Default constructor.
 	 */
 	public BinarySearchTree() {
+		count = 0;
 	}
 		
 	
@@ -88,8 +94,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		return root == null;
 	}	
 
-	@Override
-	public boolean insert(K key, V value) throws IllegalArgumentException {
+	public boolean insertInternal(K key, V value) throws IllegalArgumentException {
 		nullCheckKey(key);
 		
 		// 1) create a node to insert
@@ -98,6 +103,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		// 2) find a place to insert it
 		if (root == null) {
 			root = toInsert;
+			return true;
 		}
 		
 		BSTNode<K, V> tmp = root;
@@ -128,8 +134,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		}
 	}
 
-	@Override
-	public V remove(K key) throws IllegalArgumentException {
+	public V removeInternal(K key) throws IllegalArgumentException {
 		nullCheckKey(key);
 		
 		/* 1) Find the node to be deleted and it's parent */
@@ -169,7 +174,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		 * 2) toDelete has only one child
 		 * 3) toDelete has two children
 		 */
-		int children = getNumberOfChildren(toDelete);
+		int children = getNumberOfChildren(toDelete);	
 						
 		if (children == 0) {			
 			// 1) leaf node			
@@ -209,11 +214,44 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 			}
 			
 		} else if (children == 2) {
-			// 3) TODO two child nodes
-			System.err.println("Not implemented for 2 child nodes!");
+			// 3) two child nodes
 			
+			BSTNode<K, V> left = toDelete.getLeft();
+			BSTNode<K, V> right = toDelete.getRight();
+			
+			// find max in left subtree
+			BSTNode<K, V> maxRight = left;
+			BSTNode<K, V> tmpPar = maxRight;
+			
+			while (maxRight.getRight() != null) {
+				tmpPar = maxRight;
+				maxRight = maxRight.getRight();
+			}
+			
+			BSTNode<K, V> sub = maxRight;
+			
+			if (maxRight.getLeft() != null) {
+				tmpPar.setRight(maxRight.getLeft());
+			}
+			
+			if (parent == null) {
+				root = sub;
+			} else if (isLeft) {
+				parent.setLeft(sub);
+			} else {
+				parent.setRight(sub);
+			}
+			
+			if (left.getLeft() != null) {
+				sub.setLeft(left);
+			}
+			if (right.getRight() != null) {
+				sub.setRight(right);
+			}
+						
 		} else {
-			throw new IllegalArgumentException("Can't delete a node with an illegal number of child nodes.");
+			throw new IllegalArgumentException(
+					String.format("Can't delete a node with an illegal number of child nodes: %d.", children));
 		}
 		
 		return value;
@@ -271,5 +309,31 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 	@Override
 	public Iterator<Entry<K, V>> iterator() {
 		return new BSTIterator<>(root);
+	}
+
+
+	@Override
+	public int size() {		
+		return count;
+	}
+
+
+	@Override
+	public boolean insert(K key, V value) throws IllegalArgumentException {
+		boolean inserted = insertInternal(key, value);
+		
+		if (inserted) count ++;
+		
+		return inserted;
+	}
+
+
+	@Override
+	public V remove(K key) throws IllegalArgumentException {
+		V removed = removeInternal(key);
+		
+		if (removed != null) count --;
+		
+		return removed;
 	}
 }

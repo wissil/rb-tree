@@ -58,7 +58,7 @@ public class BSTNode<K extends Comparable<K>, V> extends SearchTreeNode<K, V> {
 	 * 
 	 * @param right Right node.
 	 */
-	public void setRight(BSTNode<K, V> right) {
+	void setRight(BSTNode<K, V> right) {
 		this.right = right;
 	}
 }

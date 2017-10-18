@@ -1,7 +1,6 @@
 package filip.custom.data_structs.trees;
 
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
-import filip.custom.data_structs.trees.binary.iterators.BSTIterator;
 
 
 public class Program {
@@ -20,12 +19,11 @@ public class Program {
 		st.insert(38, "sa");
 		st.insert(84, "k");
 		
-		System.out.println(st);
+		System.out.println(st.size());
+				
+		st.remove(8);
 		
-		st.remove(12);
-		
-		System.out.println("======================");
-		
-		System.out.println(st);
+		System.out.println(st.size());
+				
 	}
 }
