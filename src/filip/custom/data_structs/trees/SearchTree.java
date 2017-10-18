@@ -102,6 +102,16 @@ public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchT
 	int size();
 	
 	/**
+	 * Gets the value for a given <code>key</code>.
+	 * 
+	 * @param key Key the value is being obtained for.
+	 * @return Value obtained for a given <code>key</code>. If no value for a given <code>key</code>
+	 * is found, then <code>null</code> is returned.
+	 * @throws IllegalArgumentException If the <code>key</code> is <code>null</code>.
+	 */
+	V get(K key) throws IllegalArgumentException;
+	
+	/**
 	 * Inner class that represents an entry of this {@link SearchTree}.<br>
 	 * Entry is consisted of a <code>Key, Value</code> pair.
 	 * 

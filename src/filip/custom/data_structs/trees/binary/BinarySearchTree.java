@@ -59,34 +59,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 	
 	@Override
 	public boolean contains(K key) throws IllegalArgumentException {
-		nullCheckKey(key);
-		
-		// check if root exists
-		if (root == null) {
-			return false;
-		}
-		
-		// at this point, root exists
-		BSTNode<K, V> tmp = root;
-		
-		while (tmp != null) {
-			// make a comparison
-			int compared = tmp.getKey().compareTo(key);
-					
-			if (compared < 0) {
-				// result is right
-				tmp = tmp.right;
-			} else if (compared > 0) {
-				// result is left
-				tmp = tmp.left;
-			} else {
-				// search hit
-				return true;
-			}
-		}
-		
-		// not found
-		return false;
+		return get(key) != null;
 	}
 	
 	@Override
@@ -311,12 +284,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		return new BSTIterator<>(root);
 	}
 
-
 	@Override
 	public int size() {		
 		return count;
 	}
-
 
 	@Override
 	public boolean insert(K key, V value) throws IllegalArgumentException {
@@ -327,7 +298,6 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		return inserted;
 	}
 
-
 	@Override
 	public V remove(K key) throws IllegalArgumentException {
 		V removed = removeInternal(key);
@@ -335,5 +305,31 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		if (removed != null) count --;
 		
 		return removed;
+	}
+
+	@Override
+	public V get(K key) {
+		nullCheckKey(key);
+				
+		BSTNode<K, V> tmp = root;
+		
+		while (tmp != null) {
+			// make a comparison
+			int compared = tmp.getKey().compareTo(key);
+					
+			if (compared < 0) {
+				// result is right
+				tmp = tmp.right;
+			} else if (compared > 0) {
+				// result is left
+				tmp = tmp.left;
+			} else {
+				// search hit
+				return tmp.getValue();
+			}
+		}
+		
+		// not found
+		return null;
 	}
 }
