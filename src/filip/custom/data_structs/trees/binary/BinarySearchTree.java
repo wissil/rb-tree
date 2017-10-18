@@ -143,7 +143,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 			// searched object not found if
 			if (toDelete == null) return null;
 			
-			int compared = toDelete.getKey().compareTo(key);
+			int compared = key.compareTo(toDelete.getKey());
 			
 			if (compared > 0) {
 				// go right
@@ -170,8 +170,8 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 		 * 3) toDelete has two children
 		 */
 		int children = getNumberOfChildren(toDelete);
-				
-		if (children == 0) {
+						
+		if (children == 0) {			
 			// 1) leaf node			
 			if (parent == null) {
 				// root is being deleted
@@ -184,7 +184,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 				parent.setRight(null);
 			}
 			
-		} else if (children == 1) {
+		} else if (children == 1) {			
 			// 2) one child node	
 			BSTNode<K, V> child = null;
 			
@@ -209,8 +209,8 @@ public class BinarySearchTree<K extends Comparable<K>, V> implements SearchTree<
 			}
 			
 		} else if (children == 2) {
-			// 3) two children nodes
-			
+			// 3) TODO two child nodes
+			System.err.println("Not implemented for 2 child nodes!");
 			
 		} else {
 			throw new IllegalArgumentException("Can't delete a node with an illegal number of child nodes.");

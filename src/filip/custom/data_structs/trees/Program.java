@@ -20,11 +20,12 @@ public class Program {
 		st.insert(38, "sa");
 		st.insert(84, "k");
 		
-		@SuppressWarnings("unchecked")
-		BSTIterator<Integer, String> it = (BSTIterator<Integer, String>) st.iterator();
+		System.out.println(st);
 		
-		while (it.hasNext()) {
-			System.out.println(it.next());
-		}
+		st.remove(12);
+		
+		System.out.println("======================");
+		
+		System.out.println(st);
 	}
 }
