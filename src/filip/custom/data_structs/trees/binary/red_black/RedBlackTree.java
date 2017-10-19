@@ -2,7 +2,6 @@ package filip.custom.data_structs.trees.binary.red_black;
 
 
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
-import filip.custom.data_structs.trees.binary.red_black.RBTNode.Color;
 
 /**
  * A class that represents a <b>Red-Black Tree</b>.<br>
@@ -22,42 +21,4 @@ import filip.custom.data_structs.trees.binary.red_black.RBTNode.Color;
  */
 public class RedBlackTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
 	
-	/**
-	 * Root node of this <b>Red-Black Tree</b>.
-	 */
-	private RBTNode<K, V> root = null;
-	
-	/**
-	 * Default constructor.<br>
-	 * Creates a new instance of an empty {@link RedBlackTree}.
-	 */
-	public RedBlackTree() {
-	}
-	
-	@Override
-	protected boolean insertInternal(K key, V value) throws IllegalArgumentException {
-		nullCheckKey(key);
-		
-		// Rule #2: root node is always black
-		if (root == null) {
-			root = new RBTNode<>(key, value, Color.BLACK);
-			return true;
-		}
-		
-		// otherwise, a new node is always red
-		RBTNode<K, V> toInsert = new RBTNode<>(key, value, Color.RED);
-		
-		// Rule #4 violation: parent of a new node is red
-		
-		// TODO Auto-generated method stub
-		return super.insert(key, value);
-	}
-	
-	@Override
-	protected V removeInternal(K key) throws IllegalArgumentException {
-		nullCheckKey(key);
-		
-		// TODO Auto-generated method stub
-		return super.remove(key);
-	}
 }

@@ -21,9 +21,12 @@ public class Program {
 		
 		System.out.println(st);
 				
-//		st.remove(8);
+		st.remove(8);
 //		
-//		System.out.println(st.size());
+		System.out.println();
+		System.out.println();
+		
+		System.out.println(st);
 				
 	}
 }

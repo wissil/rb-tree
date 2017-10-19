@@ -32,7 +32,7 @@ public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchT
 	 * already in this tree.
 	 */
 	boolean insert(K key, V value) throws IllegalArgumentException;
-	
+		
 	/**
 	 * Removes the value for a given <code>key</code> from this {@link SearchTree}.
 	 * 
