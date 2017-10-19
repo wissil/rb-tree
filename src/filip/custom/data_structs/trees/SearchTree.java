@@ -84,8 +84,8 @@ public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchT
 	SearchTree<K, V> getLessThan(K toCompare);
 	
 	/**
-	 * Gets all the elements with the key greater than or equal to the <code>start</code> key, and 
-	 * less than or equal to the <code>end</code> key.
+	 * Gets all the elements with the key greater than to the <code>start</code> key, and 
+	 * less than the <code>end</code> key.
 	 * 
 	 * @param fromKey Start of the interval.
 	 * @param toKey End of the interval.

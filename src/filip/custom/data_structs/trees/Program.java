@@ -21,12 +21,11 @@ public class Program {
 		
 		System.out.println(st);
 				
-		st.remove(8);
 //		
 		System.out.println();
 		System.out.println();
 		
-		System.out.println(st);
+		System.out.println(st.getInterval(8, 26));
 				
 	}
 }
