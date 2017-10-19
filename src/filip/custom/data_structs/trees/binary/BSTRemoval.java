@@ -158,7 +158,7 @@ public class BSTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V
 	}
 
 	@Override
-	public V getRemoved() {
+	public V getValueRemoved() {
 		return removed;
 	}
 	

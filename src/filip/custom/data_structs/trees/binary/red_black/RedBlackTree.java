@@ -1,6 +1,7 @@
 package filip.custom.data_structs.trees.binary.red_black;
 
 
+import filip.custom.data_structs.trees.binary.BSTNode;
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
 
 /**
@@ -21,4 +22,17 @@ import filip.custom.data_structs.trees.binary.BinarySearchTree;
  */
 public class RedBlackTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
 	
+	@Override
+	public boolean insert(K key, V value) throws IllegalArgumentException {
+		RBTInsertion<K, V> i = new RBTInsertion<>((RBTNode<K, V>) root);
+		root = (BSTNode<K, V>) i.insert(key, value);
+		return i.isInserted();
+	}
+	
+	@Override
+	public V remove(K key) throws IllegalArgumentException {
+		RBTRemoval<K, V> r = new RBTRemoval<>((RBTNode<K, V>) root);
+		root = (BSTNode<K, V>) r.remove(key);
+		return r.getValueRemoved();
+	}
 }

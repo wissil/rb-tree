@@ -29,5 +29,5 @@ public interface EntryRemoval<K extends Comparable<K>, V> {
 	 * @return The element that was removed by the last call to method
 	 * {@link #remove(K)}, and <code>null</code> if last call removed nothing.
 	 */
-	V getRemoved();
+	V getValueRemoved();
 }

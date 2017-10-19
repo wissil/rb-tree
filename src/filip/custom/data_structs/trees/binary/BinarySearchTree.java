@@ -30,6 +30,6 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractBST<K,
 	public V remove(K key) throws IllegalArgumentException {
 		BSTRemoval<K, V> r = new BSTRemoval<>(root);
 		root = (BSTNode<K, V>) r.remove(key);
-		return r.getRemoved();
+		return r.getValueRemoved();
 	}
 }
