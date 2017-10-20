@@ -44,7 +44,7 @@ public abstract class SearchTreeNode<K extends Comparable<K>, V>
 	public SearchTreeNode(K key, V value) {
 		this.key = Objects.requireNonNull(key);
 		this.value = value;
-		this.textual = String.format("(K:%s, V:%s)", key, value);
+		this.textual = String.format("(%s, %s)", key, value);
 	}
 
 	/**
