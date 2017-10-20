@@ -1,7 +1,8 @@
-package filip.custom.data_structs.trees.binary.red_black;
+package filip.custom.data_structs.trees.binary.red_black.oper;
 
-import filip.custom.data_structs.trees.algorithms.EntryRemoval;
+import filip.custom.data_structs.trees.binary.red_black.RBTNode;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
+import filip.custom.data_structs.trees.operations.EntryRemoval;
 
 /**
  * A class that represents a removal of element from a <b>Red-Black Tree</b>.<br>

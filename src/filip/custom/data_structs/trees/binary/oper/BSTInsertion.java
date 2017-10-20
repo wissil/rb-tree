@@ -1,6 +1,7 @@
-package filip.custom.data_structs.trees.binary;
+package filip.custom.data_structs.trees.binary.oper;
 
-import filip.custom.data_structs.trees.algorithms.EntryInsertion;
+import filip.custom.data_structs.trees.binary.BSTNode;
+import filip.custom.data_structs.trees.operations.EntryInsertion;
 
 /**
  * A class that represents an insertion to a <b>Binary Search Tree</b>.<br>

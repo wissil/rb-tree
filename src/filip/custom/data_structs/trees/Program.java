@@ -1,6 +1,7 @@
 package filip.custom.data_structs.trees;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import filip.custom.data_structs.trees.factories.BSTFactory;
@@ -11,7 +12,7 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		Map<Integer, String> entries = new HashMap<>();
+		Map<Integer, String> entries = new LinkedHashMap<>();
 		entries.put(5, "Joe");
 		entries.put(8, "John");
 		entries.put(3, "Jack");
@@ -22,21 +23,27 @@ public class Program {
 		entries.put(25, "Miranda");
 		entries.put(38, "Mia");
 		entries.put(84, "Rob");
-		entries.put(68, "Julia");
+		entries.put(68, "Julia");	
 								
 		// binary search tree
 		SearchTree<Integer, String> bst = 
 				new BSTFactory<Integer, String>().createFromMap(entries);
 		
 		// red black tree
-		SearchTree<Integer, String> rbt = 
-				new RBTFactory<Integer, String>().createFromMap(entries);
+//		SearchTree<Integer, String> rbt = 
+//				new RBTFactory<Integer, String>().createFromMap(entries);
 		
-		System.out.println(bst.depth());
-		System.out.println(rbt.depth());
+
 		
-//		System.out.println(bst);
-//		System.out.println("========================================================\n");
-//		System.out.println(rbt);			
+		System.out.println(bst);
+		
+		bst.remove(8);
+		
+		System.out.println("=====================================\n");
+		
+		System.out.println(bst);
+		
+		
+
 	}
 }

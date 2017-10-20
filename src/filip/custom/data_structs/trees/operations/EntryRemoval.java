@@ -1,4 +1,4 @@
-package filip.custom.data_structs.trees.algorithms;
+package filip.custom.data_structs.trees.operations;
 
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
 

@@ -18,7 +18,7 @@ public class RBTNode<K extends Comparable<K>, V> extends BSTNode<K, V> {
 	 * @author fiilip
 	 *
 	 */
-	static enum Color {RED, BLACK}
+	public static enum Color {RED, BLACK}
 	
 	/**
 	 * Color of this node.

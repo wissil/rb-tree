@@ -1,6 +1,9 @@
 package filip.custom.data_structs.trees.binary;
 
 import filip.custom.data_structs.trees.SearchTree;
+import filip.custom.data_structs.trees.binary.oper.BSTInsertion;
+import filip.custom.data_structs.trees.binary.oper.BSTRecRemoval;
+import filip.custom.data_structs.trees.binary.oper.BSTRemoval;
 
 /**
  * This class represents any <b>Binary Search Tree</b>.<br>
@@ -28,7 +31,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractBST<K,
 	
 	@Override
 	public V remove(K key) throws IllegalArgumentException {
-		BSTRemoval<K, V> r = new BSTRemoval<>(root);
+		BSTRecRemoval<K, V> r = new BSTRecRemoval<>(root);
 		root = (BSTNode<K, V>) r.remove(key);
 		return r.getValueRemoved();
 	}

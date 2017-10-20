@@ -69,4 +69,20 @@ public class BSTNode<K extends Comparable<K>, V> extends SearchTreeNode<K, V> {
 	public void setRight(BSTNode<K, V> right) {
 		this.right = right;
 	}
+	
+	/**
+	 * Gets the number of children nodes of this node.<br>
+	 * Children node is a node that has <code>this</code> node as it's direct
+	 * parent, and is not <code>null</code>.
+	 * 
+	 * @return Number of children nodes of this node.
+	 */
+	public int getNumberOfChildren() {
+		int children = 0;
+		
+		if (left != null) children ++;
+		if (right != null) children ++;
+		
+		return children;
+	}
 }

@@ -1,7 +1,8 @@
-package filip.custom.data_structs.trees.binary;
+package filip.custom.data_structs.trees.binary.oper;
 
-import filip.custom.data_structs.trees.algorithms.EntryRemoval;
+import filip.custom.data_structs.trees.binary.BSTNode;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
+import filip.custom.data_structs.trees.operations.EntryRemoval;
 
 /**
  * A class that represents a removal of element from a <b>Binary Search Tree</b>.<br>
@@ -18,12 +19,12 @@ public class BSTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V
 	/**
 	 * Root of the tree calling this removal.
 	 */
-	private BSTNode<K, V> root;
+	protected BSTNode<K, V> root;
 	
 	/**
 	 * Value of the entry removed by the last call to method <code>remove</code>.
 	 */
-	private V removed;
+	protected V removed;
 	
 	/**
 	 * Creates a new instance of {@link BSTRemoval}.
@@ -74,7 +75,7 @@ public class BSTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V
 		 * 2) toDelete has only one child
 		 * 3) toDelete has two children
 		 */
-		int children = getNumberOfChildren(toDelete);	
+		int children = toDelete.getNumberOfChildren();	
 
 		if (children == 0) {			
 			// 1) leaf node			
@@ -160,24 +161,5 @@ public class BSTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V
 	@Override
 	public V getValueRemoved() {
 		return removed;
-	}
-	
-	/**
-	 * Gets the number of child nodes for a given <code>node</code>.
-	 * 
-	 * @param node Node of interest.
-	 * @return Number of child nodes for a given <code>node</code>.
-	 */
-	private int getNumberOfChildren(BSTNode<K, V> node) {
-		if (node == null) {
-			throw new IllegalArgumentException("Can't get a number of child nodes for null.");
-		}
-		
-		int children = 0;
-		
-		if (node.getLeft() != null) children ++;
-		if (node.getRight() != null) children ++;
-		
-		return children;
 	}
 }

@@ -1,8 +1,9 @@
-package filip.custom.data_structs.trees.binary.red_black;
+package filip.custom.data_structs.trees.binary.red_black.oper;
 
-import filip.custom.data_structs.trees.algorithms.EntryInsertion;
+import filip.custom.data_structs.trees.binary.red_black.RBTNode;
 import filip.custom.data_structs.trees.binary.red_black.RBTNode.Color;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
+import filip.custom.data_structs.trees.operations.EntryInsertion;
 
 /**
  * A class that represents an insertion to a <b>Red-Black Tree</b>.<br>

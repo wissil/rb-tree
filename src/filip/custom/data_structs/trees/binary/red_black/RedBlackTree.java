@@ -2,6 +2,8 @@ package filip.custom.data_structs.trees.binary.red_black;
 
 
 import filip.custom.data_structs.trees.binary.BinarySearchTree;
+import filip.custom.data_structs.trees.binary.red_black.oper.RBTInsertion;
+import filip.custom.data_structs.trees.binary.red_black.oper.RBTRemoval;
 
 /**
  * A class that represents a <b>Red-Black Tree</b>.<br>
