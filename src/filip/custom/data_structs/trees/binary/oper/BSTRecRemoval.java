@@ -50,22 +50,13 @@ public class BSTRecRemoval<K extends Comparable<K>, V> extends BSTRemoval<K, V> 
 		} else {
 			// search hit
 			int children = node.getNumberOfChildren();
-				
-			if (children == 0) {
-				// case #1: no children
-				return deleteNoChildren(node);
-				
-			} else if (children == 1) {
-				// case #2: one child
-				return deleteOneChild(node);
-				
-			} else if (children == 2) {
-				// case #3: two children
-				return deleteTwoChildren(node);
-				
-			} else {
-				// illegal scenario
-				throw new IllegalArgumentException("Node with more than two children found in a BST!");
+			
+			switch (children) {
+				case 0: return deleteNoChildren(node);
+				case 1: return deleteOneChild(node);
+				case 2: return deleteTwoChildren(node);
+				default: throw new IllegalArgumentException(
+						"Node with more than two child nodes found in a BST!");
 			}
 		}
 		return node;
