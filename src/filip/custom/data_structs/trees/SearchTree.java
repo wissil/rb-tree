@@ -111,6 +111,12 @@ public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchT
 	 */
 	V get(K key) throws IllegalArgumentException;
 	
+	/**
+	 * Gets the depth of this tree, ie. number of levels.
+	 * 
+	 * @return Depth of this tree.
+	 */
+	int depth();
 	
 	/**
 	 * Inner class that represents an entry of this {@link SearchTree}.<br>

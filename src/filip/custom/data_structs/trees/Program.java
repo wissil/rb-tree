@@ -32,8 +32,11 @@ public class Program {
 		SearchTree<Integer, String> rbt = 
 				new RBTFactory<Integer, String>().createFromMap(entries);
 		
-		System.out.println(bst);
-		System.out.println("========================================================\n");
-		System.out.println(rbt);			
+		System.out.println(bst.depth());
+		System.out.println(rbt.depth());
+		
+//		System.out.println(bst);
+//		System.out.println("========================================================\n");
+//		System.out.println(rbt);			
 	}
 }

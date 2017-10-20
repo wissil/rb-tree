@@ -113,7 +113,26 @@ public abstract class AbstractBST<K extends Comparable<K>, V> implements SearchT
 		return null;
 	}
 	
+	@Override
+	public int depth() {		
+		return depth(root);
+	}
 	
+	/**
+	 * Calculates the depth of a tree from the given <code>node</code>
+	 * to the furtherest leaf node.
+	 * 
+	 * @param node Node of interest.
+	 * @return Depth from the given <code>node</code>.
+	 */
+	private int depth(BSTNode<K, V> node) {
+		if (node == null) {
+			return 0;
+		}
+		
+		return 1 + Math.max(depth(node.getLeft()), depth(node.getRight()));
+	}
+
 	/**
 	 * Checks if the given <code>key</code> is <code>null</code>.<br>
 	 * 
