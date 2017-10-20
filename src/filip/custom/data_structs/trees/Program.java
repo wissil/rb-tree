@@ -1,33 +1,42 @@
 package filip.custom.data_structs.trees;
 
-import filip.custom.data_structs.trees.binary.BinarySearchTree;
-import filip.custom.data_structs.trees.binary.red_black.RedBlackTree;
+import java.util.Arrays;
+import java.util.List;
+
+import filip.custom.data_structs.trees.factories.BSTFactory;
+import filip.custom.data_structs.trees.factories.RBTFactory;
+import filip.custom.data_structs.trees.factories.TreeEntry;
 
 
 public class Program {
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void main(String[] args) {
-		BinarySearchTree<Integer, String> st = new RedBlackTree<>();
+						
+		List<SearchTree.Entry<Integer, String>> lst = 
+				Arrays.asList((TreeEntry<Integer, String>[]) new TreeEntry[] {
+						new TreeEntry(5, "Joe"),
+						new TreeEntry(8, "John"),
+						new TreeEntry(3, "Jack"),
+						new TreeEntry(7, "Jacob"),
+						new TreeEntry(12, "Jim"),
+						new TreeEntry(18, "Mary"),
+						new TreeEntry(16, "Margareth"),
+						new TreeEntry(25, "Miranda"),
+						new TreeEntry(38, "Mia"),
+						new TreeEntry(84, "Rob"),
+						new TreeEntry(68, "Julia")
+				});
 		
-		st.insert(5, "b");
-		st.insert(8, "a");
-		st.insert(3, "c");
-		st.insert(7, "d");
-		st.insert(12, "p");
-		st.insert(18, "p");
-				
-		st.insert(16, "p");
-		st.insert(25, "p");
-		st.insert(38, "sa");
-		st.insert(84, "k");
-//		
-		System.out.println(st);
-				
-//		
-//		System.out.println();
-//		System.out.println();
-//		
-//		System.out.println(st.getInterval(8, 26));
-				
+		// binary search tree
+		SearchTree<Integer, String> bst = new BSTFactory().createFromList(lst);
+		
+		// red black tree
+		SearchTree<Integer, String> rbt = new RBTFactory().createFromList(lst);
+		
+		System.out.println(bst);
+		System.out.println("========================================================\n" + 
+							"========================================================\n");
+		System.out.println(rbt);			
 	}
 }

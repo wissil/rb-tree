@@ -111,6 +111,7 @@ public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchT
 	 */
 	V get(K key) throws IllegalArgumentException;
 	
+	
 	/**
 	 * Inner class that represents an entry of this {@link SearchTree}.<br>
 	 * Entry is consisted of a <code>Key, Value</code> pair.
