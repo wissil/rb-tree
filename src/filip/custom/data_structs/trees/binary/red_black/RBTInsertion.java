@@ -62,6 +62,11 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 		return root;
 	}
 	
+	@Override
+	public boolean isInserted() {
+		return inserted;
+	}
+	
 	/**
 	 * Performs the re-balancing of the tree after the insertion of
 	 * a new node, <code>n</code>.
@@ -78,7 +83,6 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 			RBTNode<K, V> u = null; // uncle
 
 			if (isLeftChild(parent(n), grandparent(n))) {
-
 				u = (RBTNode<K, V>) grandparent(n).getRight();
 
 				if (isRed(u)) {
@@ -93,10 +97,11 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 					// double rotation needed
 					n = parent(n);
 					leftRotate(n);
-				} 
+				}
+				
 				parent(n).setColor(Color.BLACK);
 				grandparent(n).setColor(Color.RED);
-				rightRotate(grandparent(n));
+				rightRotate(grandparent(n));				
 			} else {
 				u = (RBTNode<K, V>) grandparent(n).getLeft();
 
@@ -113,6 +118,7 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 					n = parent(n);
 					rightRotate(n);
 				}
+				
 				parent(n).setColor(Color.BLACK);
 				grandparent(n).setColor(Color.RED);
 				leftRotate(grandparent(n));
@@ -335,11 +341,6 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 			}
 		}
 		return newNode;
-	}
-	
-	@Override
-	public boolean isInserted() {
-		return inserted;
 	}
 
 }
