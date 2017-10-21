@@ -1,6 +1,7 @@
 package filip.custom.data_structs.trees.binary.red_black.oper.remove;
 
 import filip.custom.data_structs.trees.binary.red_black.RBTNode;
+import filip.custom.data_structs.trees.binary.red_black.oper.RBTOperation;
 import filip.custom.data_structs.trees.operations.EntryRemoval;
 
 /**
@@ -12,7 +13,8 @@ import filip.custom.data_structs.trees.operations.EntryRemoval;
  * @param <K> Type of keys stored in a tree.
  * @param <V> Type of values stored in a tree.
  */
-public abstract class AbstractRBTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V> {
+public abstract class AbstractRBTRemoval<K extends Comparable<K>, V> 
+				extends RBTOperation<K, V> implements EntryRemoval<K, V> {
 	
 	/**
 	 * Root of the tree calling this removal.
@@ -30,7 +32,7 @@ public abstract class AbstractRBTRemoval<K extends Comparable<K>, V> implements 
 	 * @param root Root of the tree this removal is being called upon.
 	 */
 	public AbstractRBTRemoval(RBTNode<K, V> root) {
-		this.root = root;
+		super(root);
 		this.removed = null;
 	}
 	
