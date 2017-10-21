@@ -1,8 +1,7 @@
-package filip.custom.data_structs.trees.binary.oper;
+package filip.custom.data_structs.trees.binary.oper.remove;
 
 import filip.custom.data_structs.trees.binary.BSTNode;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
-import filip.custom.data_structs.trees.operations.EntryRemoval;
 
 /**
  * A class that represents a removal of element from a <b>Binary Search Tree</b>.<br>
@@ -14,26 +13,15 @@ import filip.custom.data_structs.trees.operations.EntryRemoval;
  * @param <K> Type of keys stored in a tree.
  * @param <V> Type of values stored in a tree.
  */
-public class BSTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V> {
-	
-	/**
-	 * Root of the tree calling this removal.
-	 */
-	protected BSTNode<K, V> root;
-	
-	/**
-	 * Value of the entry removed by the last call to method <code>remove</code>.
-	 */
-	protected V removed;
-	
+public class BSTRemoval<K extends Comparable<K>, V> extends AbstractBSTRemoval<K, V> {
+		
 	/**
 	 * Creates a new instance of {@link BSTRemoval}.
 	 * 
 	 * @param root Root of the tree calling this removal.
 	 */
 	public BSTRemoval(BSTNode<K, V> root) {
-		this.root = root;
-		this.removed = null;
+		super(root);
 	}
 
 	@Override
@@ -156,10 +144,5 @@ public class BSTRemoval<K extends Comparable<K>, V> implements EntryRemoval<K, V
 		}
 
 		return root;
-	}
-
-	@Override
-	public V getValueRemoved() {
-		return removed;
 	}
 }

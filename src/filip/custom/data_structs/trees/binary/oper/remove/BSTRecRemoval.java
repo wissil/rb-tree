@@ -1,4 +1,4 @@
-package filip.custom.data_structs.trees.binary.oper;
+package filip.custom.data_structs.trees.binary.oper.remove;
 
 import filip.custom.data_structs.trees.binary.BSTNode;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
@@ -14,7 +14,7 @@ import filip.custom.data_structs.trees.nodes.SearchTreeNode;
  * @param <K> Type of keys stored in a tree.
  * @param <V> Type of values stored in a tree.
  */
-public class BSTRecRemoval<K extends Comparable<K>, V> extends BSTRemoval<K, V> {
+public class BSTRecRemoval<K extends Comparable<K>, V> extends AbstractBSTRemoval<K, V> {
 	
 	/**
 	 * Creates a new instance of {@link BSTRecRemoval}.
@@ -132,10 +132,4 @@ public class BSTRecRemoval<K extends Comparable<K>, V> extends BSTRemoval<K, V> 
 		}
 		return node;
 	}
-
-	@Override
-	public V getValueRemoved() {
-		return removed;
-	}
-
 }

@@ -1,9 +1,8 @@
-package filip.custom.data_structs.trees.binary.red_black.oper;
+package filip.custom.data_structs.trees.binary.red_black.oper.insert;
 
 import filip.custom.data_structs.trees.binary.red_black.RBTNode;
 import filip.custom.data_structs.trees.binary.red_black.RBTNode.Color;
 import filip.custom.data_structs.trees.nodes.SearchTreeNode;
-import filip.custom.data_structs.trees.operations.EntryInsertion;
 
 /**
  * A class that represents an insertion to a <b>Red-Black Tree</b>.<br>
@@ -21,18 +20,7 @@ import filip.custom.data_structs.trees.operations.EntryInsertion;
  * @param <K> Type of keys stored in a tree.
  * @param <V> Type of values stored in a tree.
  */
-public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<K, V> {
-	
-	/**
-	 * Root of the tree calling this insertion.
-	 */
-	private RBTNode<K, V> root;
-	
-	/**
-	 * Whether or not the last call to <code>insert</code> function actually
-	 * inserted a new entry.
-	 */
-	private boolean inserted;
+public class RBTInsertion<K extends Comparable<K>, V> extends AbstractRBTInsertion<K, V> {
 	
 	/**
 	 * Creates a new instance of {@link RBTInsertion}.
@@ -40,8 +28,7 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 	 * @param root Root of the tree calling this insertion.
 	 */
 	public RBTInsertion(RBTNode<K, V> root) {
-		this.root = root;
-		this.inserted = false;
+		super(root);
 	}
 
 	@Override
@@ -61,11 +48,6 @@ public class RBTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 		}
 		
 		return root;
-	}
-	
-	@Override
-	public boolean isInserted() {
-		return inserted;
 	}
 	
 	/**

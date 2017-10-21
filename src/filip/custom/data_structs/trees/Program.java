@@ -1,11 +1,9 @@
 package filip.custom.data_structs.trees;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import filip.custom.data_structs.trees.factories.BSTFactory;
-import filip.custom.data_structs.trees.factories.RBTFactory;
 
 
 public class Program {

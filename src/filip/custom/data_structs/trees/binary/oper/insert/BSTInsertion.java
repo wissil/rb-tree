@@ -1,7 +1,6 @@
-package filip.custom.data_structs.trees.binary.oper;
+package filip.custom.data_structs.trees.binary.oper.insert;
 
 import filip.custom.data_structs.trees.binary.BSTNode;
-import filip.custom.data_structs.trees.operations.EntryInsertion;
 
 /**
  * A class that represents an insertion to a <b>Binary Search Tree</b>.<br>
@@ -13,18 +12,7 @@ import filip.custom.data_structs.trees.operations.EntryInsertion;
  * @param <K> Type of keys stored in a tree.
  * @param <V> Type of values stored in a tree.
  */
-public class BSTInsertion<K extends Comparable<K>, V> implements EntryInsertion<K, V> {
-	
-	/**
-	 * Root of the tree calling this insertion.
-	 */
-	private BSTNode<K, V> root;
-	
-	/**
-	 * Whether or not the last call to <code>insert</code> function actually
-	 * inserted a new entry.
-	 */
-	private boolean inserted;
+public class BSTInsertion<K extends Comparable<K>, V> extends AbstractBSTInsertion<K, V> {
 	
 	/**
 	 * Creates a new instance of {@link BSTInsertion}.
@@ -32,8 +20,7 @@ public class BSTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 	 * @param root Root of the tree calling this insertion.
 	 */
 	public BSTInsertion(BSTNode<K, V> root) {
-		this.root = root;
-		this.inserted = false;
+		super(root);
 	}
 
 	@Override
@@ -80,11 +67,4 @@ public class BSTInsertion<K extends Comparable<K>, V> implements EntryInsertion<
 		
 		return root;
 	}
-
-	
-	@Override
-	public boolean isInserted() {
-		return inserted;
-	}
-	
 }

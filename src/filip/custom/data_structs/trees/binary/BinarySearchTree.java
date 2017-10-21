@@ -1,9 +1,8 @@
 package filip.custom.data_structs.trees.binary;
 
 import filip.custom.data_structs.trees.SearchTree;
-import filip.custom.data_structs.trees.binary.oper.BSTInsertion;
-import filip.custom.data_structs.trees.binary.oper.BSTRecRemoval;
-import filip.custom.data_structs.trees.binary.oper.BSTRemoval;
+import filip.custom.data_structs.trees.binary.oper.insert.BSTInsertion;
+import filip.custom.data_structs.trees.binary.oper.remove.BSTRecRemoval;
 
 /**
  * This class represents any <b>Binary Search Tree</b>.<br>
