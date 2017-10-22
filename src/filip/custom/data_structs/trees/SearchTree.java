@@ -1,5 +1,8 @@
 package filip.custom.data_structs.trees;
 
+import java.util.Map;
+
+import filip.custom.data_structs.trees.factories.TreeFactory;
 
 /**
  * Interface that represents any kind of a <b>Search Tree</b>.<br>
@@ -117,6 +120,19 @@ public interface SearchTree<K extends Comparable<K>, V> extends Iterable<SearchT
 	 * @return Depth of this tree.
 	 */
 	int depth();
+	
+	/**
+	 * Statically creates a new instance of a {@link SearchTree} populated with the given <code>entries</code>.<br>
+	 * The concrete type of a returned tree will depend on a given {@link TreeFactory}.
+	 * 
+	 * @param entries Map of entries the tree is populated from.
+	 * @param factory Factory of a concrete tree.
+	 * @return New concrete instance of a {@link SearchTree} based on the given <code>entries</code>
+	 * and a given <code>factory</code>.
+	 */
+	static <K extends Comparable<K>, V> SearchTree<K, V> createFromMap(Map<K, V> entries, TreeFactory<K, V> factory) {
+		return factory.createFromMap(entries);
+	}
 	
 	/**
 	 * Inner class that represents an entry of this {@link SearchTree}.<br>

@@ -3,7 +3,7 @@ package filip.custom.data_structs.trees;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import filip.custom.data_structs.trees.factories.BSTFactory;
+import filip.custom.data_structs.trees.factories.RBTFactory;
 
 
 public class Program {
@@ -24,24 +24,15 @@ public class Program {
 		entries.put(68, "Julia");	
 								
 		// binary search tree
-		SearchTree<Integer, String> bst = 
-				new BSTFactory<Integer, String>().createFromMap(entries);
+		SearchTree<Integer, String> st = SearchTree.createFromMap(entries, new RBTFactory<>());
 		
 		// red black tree
-//		SearchTree<Integer, String> rbt = 
-//				new RBTFactory<Integer, String>().createFromMap(entries);
+		SearchTree<Integer, String> rbt = 
+				new RBTFactory<Integer, String>().createFromMap(entries);
 		
 
 		
-		System.out.println(bst);
-		
-		bst.remove(8);
-		
-		System.out.println("=====================================\n");
-		
-		System.out.println(bst);
-		
-		
-
+		System.out.println(rbt);
+				
 	}
 }
