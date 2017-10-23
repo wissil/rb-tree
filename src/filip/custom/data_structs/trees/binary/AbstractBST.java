@@ -42,8 +42,18 @@ public abstract class AbstractBST<K extends Comparable<K>, V> implements SearchT
 		this.root = null;
 	}
 	
+	/**
+	 * Gets the concrete insertion used by the {@link #insert(K, V)} method.
+	 * 
+	 * @return Specific {@link EntryInsertion}.
+	 */
 	protected abstract EntryInsertion<K, V> getInsertion();
 	
+	/**
+	 * Gets the concrete removal used by the {@link #remove(K)} method.
+	 * 
+	 * @return Specific {@link EntryRemoval}.
+	 */
 	protected abstract EntryRemoval<K, V> getRemoval();
 	
 	@Override
