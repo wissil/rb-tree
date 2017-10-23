@@ -3,6 +3,8 @@ package filip.custom.data_structs.trees.binary;
 import filip.custom.data_structs.trees.SearchTree;
 import filip.custom.data_structs.trees.binary.oper.insert.BSTInsertion;
 import filip.custom.data_structs.trees.binary.oper.remove.BSTRecRemoval;
+import filip.custom.data_structs.trees.operations.EntryInsertion;
+import filip.custom.data_structs.trees.operations.EntryRemoval;
 
 /**
  * This class represents any <b>Binary Search Tree</b>.<br>
@@ -22,17 +24,12 @@ import filip.custom.data_structs.trees.binary.oper.remove.BSTRecRemoval;
 public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractBST<K, V>  {
 	
 	@Override
-	public boolean insert(K key, V value) throws IllegalArgumentException {
-		BSTInsertion<K, V> i = new BSTInsertion<>(root);
-		root = i.insert(key, value);
-		return i.isInserted();
-	}
-	
-	@Override
-	public V remove(K key) throws IllegalArgumentException {
-		BSTRecRemoval<K, V> r = new BSTRecRemoval<>(root);
-		root = (BSTNode<K, V>) r.remove(key);
-		return r.getValueRemoved();
+	protected EntryInsertion<K, V> getInsertion() {
+		return new BSTInsertion<>(root);
 	}
 
+	@Override
+	protected EntryRemoval<K, V> getRemoval() {
+		return new BSTRecRemoval<>(root);
+	}
 }

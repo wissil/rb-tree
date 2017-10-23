@@ -15,12 +15,7 @@ import filip.custom.data_structs.trees.operations.EntryInsertion;
  */
 public abstract class AbstractRBTInsertion<K extends Comparable<K>, V> 
 				extends RBTOperation<K, V> implements EntryInsertion<K, V> {
-	
-	/**
-	 * Root of the tree calling this insertion.
-	 */
-	protected RBTNode<K, V> root;
-	
+		
 	/**
 	 * Whether or not the last call to <code>insert</code> function actually
 	 * inserted a new entry.

@@ -1,9 +1,11 @@
 package filip.custom.data_structs.trees.binary.red_black;
 
 
-import filip.custom.data_structs.trees.binary.BinarySearchTree;
+import filip.custom.data_structs.trees.binary.AbstractBST;
 import filip.custom.data_structs.trees.binary.red_black.oper.insert.RBTInsertion;
 import filip.custom.data_structs.trees.binary.red_black.oper.remove.RBTRemoval;
+import filip.custom.data_structs.trees.operations.EntryInsertion;
+import filip.custom.data_structs.trees.operations.EntryRemoval;
 
 /**
  * A class that represents a <b>Red-Black Tree</b>.<br>
@@ -21,19 +23,15 @@ import filip.custom.data_structs.trees.binary.red_black.oper.remove.RBTRemoval;
  * @param <K> Type of keys stored in this tree.
  * @param <V> Type of values stored in this tree.
  */
-public class RedBlackTree<K extends Comparable<K>, V> extends BinarySearchTree<K, V> {
-	
+public class RedBlackTree<K extends Comparable<K>, V> extends AbstractBST<K, V> {
+
 	@Override
-	public boolean insert(K key, V value) throws IllegalArgumentException {
-		RBTInsertion<K, V> i = new RBTInsertion<>((RBTNode<K, V>) root);
-		root = (RBTNode<K, V>) i.insert(key, value);
-		return i.isInserted();
+	protected EntryInsertion<K, V> getInsertion() {
+		return new RBTInsertion<>((RBTNode<K, V>) root);
 	}
-	
+
 	@Override
-	public V remove(K key) throws IllegalArgumentException {
-		RBTRemoval<K, V> r = new RBTRemoval<>((RBTNode<K, V>) root);
-		root = (RBTNode<K, V>) r.remove(key);
-		return r.getValueRemoved();
+	protected EntryRemoval<K, V> getRemoval() {
+		return new RBTRemoval<>((RBTNode<K, V>) root);
 	}
 }

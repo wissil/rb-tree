@@ -6,6 +6,8 @@ import filip.custom.data_structs.trees.SearchTree;
 import filip.custom.data_structs.trees.binary.iterators.BSTIterator;
 import filip.custom.data_structs.trees.binary.traversal.InOrderBSTreeTraversal;
 import filip.custom.data_structs.trees.binary.util.BSTStringBuilder;
+import filip.custom.data_structs.trees.operations.EntryInsertion;
+import filip.custom.data_structs.trees.operations.EntryRemoval;
 import filip.custom.data_structs.trees.traversal.visitors.FilterTreeVisitor;
 
 /**
@@ -38,6 +40,38 @@ public abstract class AbstractBST<K extends Comparable<K>, V> implements SearchT
 	protected AbstractBST() {
 		this.size = 0;
 		this.root = null;
+	}
+	
+	protected abstract EntryInsertion<K, V> getInsertion();
+	
+	protected abstract EntryRemoval<K, V> getRemoval();
+	
+	@Override
+	public boolean insert(K key, V value) throws IllegalArgumentException {
+		nullCheckKey(key);
+		
+		EntryInsertion<K, V> insertion = getInsertion();
+		root = (BSTNode<K, V>) insertion.insert(key, value);
+		
+		boolean inserted = insertion.isInserted();
+		
+		if (inserted) size ++;
+		
+		return inserted;
+	}
+	
+	@Override
+	public V remove(K key) throws IllegalArgumentException {
+		nullCheckKey(key);
+		
+		EntryRemoval<K, V> removal = getRemoval();
+		root = (BSTNode<K, V>) removal.remove(key);
+		
+		V value = removal.getValueRemoved();
+		
+		if (value != null) size --;
+		
+		return value;
 	}
 		
 	@Override

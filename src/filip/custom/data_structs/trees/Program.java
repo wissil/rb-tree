@@ -3,6 +3,7 @@ package filip.custom.data_structs.trees;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import filip.custom.data_structs.trees.factories.BSTFactory;
 import filip.custom.data_structs.trees.factories.RBTFactory;
 
 
@@ -27,12 +28,10 @@ public class Program {
 		SearchTree<Integer, String> st = SearchTree.createFromMap(entries, new RBTFactory<>());
 		
 		// red black tree
-		SearchTree<Integer, String> rbt = 
-				new RBTFactory<Integer, String>().createFromMap(entries);
-		
-
-		
-		System.out.println(rbt);
+		SearchTree<Integer, String> bst = 
+				new BSTFactory<Integer, String>().createFromMap(entries);
 				
+		System.out.println(st);
+		System.out.println(bst.size());
 	}
 }
