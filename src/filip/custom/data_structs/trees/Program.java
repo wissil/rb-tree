@@ -25,13 +25,11 @@ public class Program {
 		entries.put(68, "Julia");	
 								
 		// binary search tree
-		SearchTree<Integer, String> st = SearchTree.createFromMap(entries, new RBTFactory<>());
-		
-		// red black tree
-		SearchTree<Integer, String> bst = 
-				new BSTFactory<Integer, String>().createFromMap(entries);
-				
-		System.out.println(st);
-		System.out.println(bst.size());
+		SearchTree<Integer, String> bst = SearchTree.createFromMap(entries, new BSTFactory<>());
+		SearchTree<Integer, String> rbt = SearchTree.createFromMap(entries, new RBTFactory<>());
+						
+		System.out.println(bst);
+		System.out.println("========================================================\n");
+		System.out.println(rbt);
 	}
 }
